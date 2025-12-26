@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Turnos online · Savia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Turnos online para estéticas, peluquerías y profesionales del bienestar. Reservá tu turno en pocos pasos con Savia.">
+
+  <!-- Tipografías Savia -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root{
+      --verde-savia:#4BAF8C;
+      --verde-oscuro:#2c7a62;
+      --verde-claro:#A7E3CF;
+      --arena:#FFEFD9;
+      --durazno:#FFCCB3;
+      --texto:#111827;
+      --texto-suave:#6B7280;
+      --fondo:#F9FAFB;
+      --card:#FFFFFF;
+      --borde:#E5E7EB;
+      --accent:#4BAF8C; /* se actualiza desde JS según el negocio */
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #c4f3de 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #ffd9bf 0, transparent 55%),
+        linear-gradient(145deg,#fef6ec,#e5fff5);
+      color:var(--texto);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:1.2rem .8rem;
+    }
+
+    .phone-shell{
+      width:100%;
+      max-width:430px;
+      border-radius:32px;
+      padding:.7rem;
+      background:linear-gradient(135deg,#4BAF8C,#FFCCB3);
+      box-shadow:0 25px 60px rgba(15,23,42,.28);
+    }
+
+    .phone-body{
+      background:var(--fondo);
+      border-radius:26px;
+      padding:1rem .9rem 1.1rem;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 16px 40px rgba(15,23,42,.12);
+    }
+
+    .pill-top{
+      position:absolute;
+      top:.55rem;
+      left:50%;
+      transform:translateX(-50%);
+      width:110px;
+      height:10px;
+      border-radius:999px;
+      background:#E5E7EB;
+    }
+
+    /* Badge superior */
+    .demo-badge{
+      margin-top:1.1rem;
+      font-size:.75rem;
+      color:#022C22;
+      background:rgba(75,175,140,.12);
+      border-radius:999px;
+      padding:.24rem .7rem;
+      display:inline-flex;
+      align-items:center;
+      gap:.35rem;
+    }
+    .demo-badge .badge-dot{
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#16a34a;
+      display:inline-block;
+    }
+
+    /* HEADER: SAVIA + NEGOCIO */
+    header.hero{
+      margin-top:.75rem;
+      display:flex;
+      gap:.7rem;
+      align-items:center;
+    }
+
+    .hero-logo{
+      width:64px;
+      height:64px;
+      border-radius:22px;
+      background:radial-gradient(circle at 20% 0,#ffffff,#e0f7ec);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 16px 40px rgba(15,118,110,.35);
+      overflow:hidden;
+      flex-shrink:0;
+    }
+    .hero-logo img{
+      width:80%;
+      height:auto;
+      object-fit:contain;
+      display:block;
+    }
+
+    .hero-main{
+      display:flex;
+      flex-direction:column;
+      gap:.12rem;
+    }
+
+    .hero-eyebrow{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#6b7280;
+    }
+
+    .hero-main h1{
+      font-size:1.1rem;
+      margin:0;
+      color:#022c22;
+    }
+
+    .hero-main p.sub{
+      font-size:.8rem;
+      color:var(--texto-suave);
+    }
+
+    .hero-main p.sub-savia{
+      font-size:.76rem;
+      color:#065f46;
+    }
+
+    .hero-main .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:.3rem;
+      font-size:.72rem;
+      padding:.18rem .65rem;
+      border-radius:999px;
+      background:rgba(255,204,179,.35);
+      color:#7c2d12;
+      margin-top:.1rem;
+    }
+
+    .meta{
+      margin-top:.6rem;
+      display:flex;
+      justify-content:space-between;
+      gap:.4rem;
+      font-size:.75rem;
+      color:var(--texto-suave);
+      flex-wrap:wrap;
+    }
+
+    .sections{
+      margin-top:1rem;
+      display:flex;
+      flex-direction:column;
+      gap:.8rem;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:18px;
+      padding:.75rem .75rem .8rem;
+      border:1px solid rgba(148,163,184,.35);
+      box-shadow:0 10px 25px rgba(148,163,184,.18);
+    }
+
+    .card-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:.5rem;
+      margin-bottom:.4rem;
+    }
+    .card-title h2{
+      font-size:.9rem;
+    }
+    .card-title span{
+      font-size:.75rem;
+      color:var(--texto-suave);
+    }
+
+    .services-list{
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+      max-height:190px;
+      overflow:auto;
+      padding-right:.15rem;
+    }
+
+    .service-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:.4rem;
+      padding:.48rem .55rem;
+      border-radius:14px;
+      background:linear-gradient(135deg,#ffffff,#e0f7ec);
+      border:1px solid #d1fae5;
+      font-size:.8rem;
+    }
+    .service-item strong{
+      display:block;
+      margin-bottom:.08rem;
+    }
+    .service-meta{
+      font-size:.75rem;
+      color:var(--texto-suave);
+    }
+    .service-price{
+      font-size:.8rem;
+      font-weight:600;
+      color:#065f46;
+    }
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+      margin-top:.35rem;
+    }
+
+    label{
+      display:block;
+      font-size:.75rem;
+      margin-bottom:.1rem;
+    }
+
+    input, select{
+      width:100%;
+      border-radius:12px;
+      border:1px solid var(--borde);
+      padding:.42rem .55rem;
+      font-size:.8rem;
+      background:#F9FAFB;
+      outline:none;
+      transition:border-color .15s,box-shadow .15s,background .15s;
+    }
+
+    input:focus, select:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(74,222,128,.4);
+      background:#FFFFFF;
+    }
+
+    .btn-confirm{
+      margin-top:.3rem;
+      border:none;
+      border-radius:999px;
+      padding:.5rem .9rem;
+      font-size:.82rem;
+      font-weight:500;
+      cursor:pointer;
+      color:#fff;
+      background:linear-gradient(135deg,var(--accent),#2c7a62);
+      box-shadow:0 12px 30px rgba(22,101,52,.7);
+    }
+    .btn-confirm:hover{
+      filter:brightness(1.06);
+    }
+
+    .info-extra{
+      font-size:.76rem;
+      color:var(--texto-suave);
+      margin-top:.2rem;
+    }
+
+    footer{
+      margin-top:.8rem;
+      font-size:.7rem;
+      color:var(--texto-suave);
+      text-align:center;
+    }
+    footer span{
+      font-weight:500;
+      color:var(--accent);
+    }
+
+    .footer-social{
+      margin-top:.4rem;
+      display:flex;
+      justify-content:center;
+      gap:.6rem;
+    }
+    .footer-social a{
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.7);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:.85rem;
+      color:#4b5563;
+      text-decoration:none;
+      background:#f9fafb;
+    }
+    .footer-social a:hover{
+      background:#4BAF8C;
+      color:#ffffff;
+      border-color:#4BAF8C;
+    }
+
+    /* Botón flotante de WhatsApp */
+    .whatsapp-fab{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:56px;
+      height:56px;
+      border-radius:999px;
+      background:#22C55E;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#ffffff;
+      text-decoration:none;
+      box-shadow:0 18px 35px rgba(22,163,74,.6);
+      z-index:50;
+    }
+    .whatsapp-fab i{
+      font-size:1.5rem;
+    }
+
+    @media (max-width:480px){
+      body{
+        padding:.9rem .4rem;
+      }
+      .phone-shell{
+        max-width:100%;
+      }
+      .whatsapp-fab{
+        right:14px;
+        bottom:14px;
+        width:52px;
+        height:52px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="phone-shell">
+  <div class="phone-body">
+    <div class="pill-top"></div>
+
+    <!-- Badge superior -->
+    <div class="demo-badge">
+      <span class="badge-dot"></span>
+      Turnos online · Reservá en segundos
+    </div>
+
+    <!-- HEADER: logo Savia + info negocio -->
+    <header class="hero">
+      <div class="hero-logo">
+        <img src="img/logo_transparent_background.png" alt="Savia">
+      </div>
+      <div class="hero-main">
+        <p class="hero-eyebrow">Savia · Turnos online</p>
+        <h1 id="business-name">Nombre del negocio</h1>
+        <p class="sub" id="business-desc">Descripción corta del emprendimiento.</p>
+        <p class="sub-savia">
+          Sacás tu turno online, Savia mantiene la agenda ordenada y el profesional se enfoca en vos.
+        </p>
+        <div class="tag" id="business-tag">Peluquería · Uñas · Maquillaje · Masajes</div>
+      </div>
+    </header>
+
+    <div class="meta">
+      <div>
+        <div id="business-address">Dirección · Ciudad</div>
+        <div id="business-hours">Horarios de atención</div>
+      </div>
+      <div id="business-prof" style="text-align:right;">
+        Profesional
+      </div>
+    </div>
+
+    <section class="sections">
+      <!-- Lista de servicios -->
+      <article class="card">
+        <div class="card-title">
+          <h2>Servicios</h2>
+          <span id="services-count">0 servicios cargados</span>
+        </div>
+        <div class="services-list" id="services-list">
+          <!-- servicios se insertan por JS -->
+        </div>
+      </article>
+
+      <!-- Turnero -->
+      <article class="card">
+        <div class="card-title">
+          <h2>Reservar turno</h2>
+          <span>Completá tus datos</span>
+        </div>
+
+        <form id="booking-form">
+          <div>
+            <label for="service-select">Servicio</label>
+            <select id="service-select" required>
+              <!-- opciones por JS -->
+            </select>
+          </div>
+
+          <div>
+            <label for="bk-name">Nombre de la clienta</label>
+            <input type="text" id="bk-name" placeholder="Ej. María López" required>
+          </div>
+
+          <div>
+            <label for="bk-phone">Teléfono / WhatsApp</label>
+            <input type="tel" id="bk-phone" placeholder="Ej. 2613 38-7305" required>
+          </div>
+
+          <div>
+            <label for="bk-date">Fecha</label>
+            <input type="date" id="bk-date" required>
+          </div>
+
+          <div>
+            <label for="bk-time">Horario</label>
+            <input type="time" id="bk-time" required>
+          </div>
+
+          <button type="submit" class="btn-confirm">Confirmar turno</button>
+        </form>
+
+        <p class="info-extra">
+          Al confirmar, tu solicitud se guarda en la agenda del negocio.  
+          Si el profesional lo tiene activo, vas a recibir confirmación o recordatorio por WhatsApp.
+        </p>
+      </article>
+    </section>
+
+    <footer>
+      <p>
+        <span>Savia</span> organiza tu tiempo, vos hacés crecer tu negocio.
+      </p>
+      <div class="footer-social">
+        <a id="fb-link" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a id="ig-link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- Botón flotante de WhatsApp -->
+<a href="#" target="_blank" rel="noopener" id="wa-link" class="whatsapp-fab" aria-label="Escribir por WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+  /*
+    CONFIG DE EJEMPLO
+    En producción, esta config la traés de tu base de datos.
+    También podés setear window.SAVIA_CONFIG desde otro script y
+    este archivo la va a usar.
+  */
+  const demoConfig = {
+    slug: "demo-savia",
+    colorPrincipal: "#4BAF8C",
+    nombreNegocio: "Savia Demo Belleza",
+    profesional: "Equipo Savia",
+    rubro: "Peluquería · Uñas · Maquillaje · Masajes",
+    descripcion: "Todo en un solo lugar.",
+    whatsapp: "2613387305",
+    direccion: "San Martín 123",
+    ciudad: "Maipú · Mendoza",
+    horarios: "Lunes a sábados 9 a 20 hs",
+    logoUrl: "", // reservado para más adelante si usás logo propio del negocio
+    facebook: "https://facebook.com",   // reemplazás al conectar
+    instagram: "https://instagram.com", // reemplazás al conectar
+    servicios: [
+      { nombre:"Peluquería · corte y peinado", duracion:60, precio:12000 },
+      { nombre:"Uñas · semipermanente manos", duracion:50, precio:8000 },
+      { nombre:"Maquillaje social", duracion:45, precio:11000 },
+      { nombre:"Masajes descontracturantes", duracion:60, precio:13000 }
+    ]
+  };
+
+  const config = window.SAVIA_CONFIG || demoConfig;
+
+  function initApp(){
+    // Título dinámico según el negocio
+    if (config.nombreNegocio){
+      document.title = config.nombreNegocio + " · Turnos online";
+    }
+
+    // Actualizar color principal
+    document.documentElement.style.setProperty("--accent", config.colorPrincipal || "#4BAF8C");
+
+    // Textos principales
+    document.getElementById("business-name").textContent =
+      config.nombreNegocio || "Nombre del negocio";
+
+    document.getElementById("business-desc").textContent =
+      config.descripcion || "Descripción corta del emprendimiento.";
+
+    document.getElementById("business-tag").textContent =
+      config.rubro || "Peluquería · Uñas · Maquillaje · Masajes";
+
+    document.getElementById("business-address").textContent =
+      (config.direccion || "Dirección no cargada") +
+      (config.ciudad ? " · " + config.ciudad : "");
+
+    document.getElementById("business-hours").textContent =
+      config.horarios || "Horarios a confirmar";
+
+    document.getElementById("business-prof").textContent =
+      config.profesional || "";
+
+    // WhatsApp flotante
+    const tel = (config.whatsapp || "").replace(/[^\d]/g,"");
+    const waLink = document.getElementById("wa-link");
+    if (tel) {
+      waLink.href = "https://wa.me/54" + tel +
+        "?text=" + encodeURIComponent("Hola, quiero reservar un turno 🙌");
+    } else {
+      waLink.href = "#";
+    }
+
+    // Redes sociales
+    const fbLink = document.getElementById("fb-link");
+    const igLink = document.getElementById("ig-link");
+    fbLink.href = (config.facebook && config.facebook.trim() !== "") ? config.facebook : "#";
+    igLink.href = (config.instagram && config.instagram.trim() !== "") ? config.instagram : "#";
+
+    // Servicios
+    const servicesList = document.getElementById("services-list");
+    const servicesCount = document.getElementById("services-count");
+    const selectService = document.getElementById("service-select");
+
+    servicesList.innerHTML = "";
+    selectService.innerHTML = "";
+
+    if (!config.servicios || config.servicios.length === 0) {
+      servicesCount.textContent = "0 servicios cargados";
+      servicesList.innerHTML =
+        '<p style="font-size:.78rem;color:#6B7280;">Todavía no hay servicios configurados.</p>';
+      const opt = document.createElement("option");
+      opt.value = "";
+      opt.textContent = "Servicios a confirmar";
+      selectService.appendChild(opt);
+      selectService.disabled = true;
+    } else {
+      servicesCount.textContent = config.servicios.length + " servicios";
+      selectService.disabled = false;
+
+      config.servicios.forEach((s, idx) => {
+        // Tarjeta
+        const item = document.createElement("div");
+        item.className = "service-item";
+        item.innerHTML = `
+          <div>
+            <strong>${s.nombre}</strong>
+            <div class="service-meta">
+              ${s.duracion ? s.duracion + " min · " : ""}Turno individual
+            </div>
+          </div>
+          <div class="service-price">
+            ${s.precio ? "$" + s.precio.toLocaleString("es-AR") : "Consultar"}
+          </div>
+        `;
+        servicesList.appendChild(item);
+
+        // Opción en select
+        const opt = document.createElement("option");
+        opt.value = idx;
+        opt.textContent = s.nombre;
+        selectService.appendChild(opt);
+      });
+    }
+
+    // Mínimo de fecha = hoy
+    const inputDate = document.getElementById("bk-date");
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth()+1).padStart(2,"0");
+    const dd = String(today.getDate()).padStart(2,"0");
+    inputDate.min = `${yyyy}-${mm}-${dd}`;
+
+    // Submit del turnero (clientes)
+    const form = document.getElementById("booking-form");
+    form.addEventListener("submit",(e)=>{
+      e.preventDefault();
+      if (selectService.disabled) {
+        alert("Por favor, consultá los servicios disponibles con el negocio.");
+        return;
+      }
+
+      const idx = parseInt(selectService.value,10);
+      const servicio = config.servicios[idx];
+      const nombre = document.getElementById("bk-name").value.trim();
+      const phone = document.getElementById("bk-phone").value.trim();
+      const fecha = document.getElementById("bk-date").value;
+      const hora = document.getElementById("bk-time").value;
+
+      const turno = {
+        negocioSlug: config.slug,
+        negocio: config.nombreNegocio,
+        servicio: servicio ? servicio.nombre : "",
+        nombreCliente: nombre,
+        telefono: phone,
+        fecha,
+        hora
+      };
+
+      console.log("Turno listo para enviar al backend:", turno);
+
+      alert(
+        "¡Gracias, " + (nombre || "cliente") + "! 👌\n\n" +
+        "Registramos tu solicitud de turno para:\n" +
+        (servicio ? servicio.nombre : "Servicio") + "\n" +
+        "Fecha: " + fecha + " · " + hora + "\n\n" +
+        "En cuanto confirmemos la disponibilidad, te vamos a responder por WhatsApp."
+      );
+
+      form.reset();
+      selectService.selectedIndex = 0;
+      inputDate.min = `${yyyy}-${mm}-${dd}`;
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initApp);
+</script>
+</body>
+</html>
