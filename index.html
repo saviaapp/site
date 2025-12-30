@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
+
     :root{
       --verde-savia:#4BAF8C;
       --verde-claro:#A7E3CF;
@@ -34,6 +35,313 @@
       --ease-out:cubic-bezier(.2,.85,.2,1);
     }
 
+    :root{
+        --verde-savia:#4BAF8C;
+        --verde-claro:#A7E3CF;
+        --arena:#F5F1EA;
+        --verde-bosque:#2c7a62;
+        --durazno:#FFCFAE;
+        --texto:#1b2420;
+        --gris:#737373;
+        --negro:#111;
+    
+        --radius-xl:26px;
+        --shadow-soft:0 18px 40px rgba(0,0,0,.07);
+        --ease-out:cubic-bezier(.2,.85,.2,1);
+      }
+    
+      .savia-portada *{box-sizing:border-box}
+    
+      .savia-portada{
+    /* 🔧 Tocá SOLO ESTO si querés más arriba/abajo */
+    --hero-pt: 16px;                 /* antes 74px (por eso quedaba “aire”) */
+    --img-h: clamp(380px, 38vw, 520px);
+    --img-shift: 10px;
+
+    position:relative;
+    padding: var(--hero-pt) 16px 64px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(167,227,207,.38), transparent 55%),
+      radial-gradient(circle at 95% 20%, rgba(255,207,174,.30), transparent 60%),
+      radial-gradient(circle at 70% 95%, rgba(75,175,140,.18), transparent 58%),
+      linear-gradient(145deg,#fef6ec,#e9fff6);
+    border-top:1px solid rgba(0,0,0,.04);
+    border-bottom:1px solid rgba(0,0,0,.04);
+  }
+    
+      .savia-portada::before{
+        content:"";
+        position:absolute;
+        inset:-30%;
+        background:
+          radial-gradient(circle at 0% 0%, rgba(167,227,207,.55), transparent 55%),
+          radial-gradient(circle at 100% 90%, rgba(255,207,174,.55), transparent 60%);
+        opacity:.75;
+        pointer-events:none;
+        animation:saviaPortadaShift 14s var(--ease-out) infinite alternate;
+      }
+    
+      @keyframes saviaPortadaShift{
+        0%{ transform:translate(-1%, 1%) scale(1); }
+        100%{ transform:translate(1%, -1%) scale(1.03); }
+      }
+    
+      .savia-portada .sp-container{
+        width:min(1120px, 100% - 2.5rem);
+        margin:0 auto;
+        position:relative;
+        z-index:1;
+      }
+    
+      .sp-grid{
+        display:grid;
+        grid-template-columns:1.25fr 1fr;
+        gap:24px;
+        align-items:center;
+      }
+    
+      /* Lado texto */
+      .sp-eyebrow{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        font-size:12px;
+        letter-spacing:.22em;
+        text-transform:uppercase;
+        font-weight:900;
+        color:var(--verde-bosque);
+        margin-bottom:12px;
+      }
+      .sp-dot{
+        width:10px;height:10px;border-radius:999px;
+        background:linear-gradient(135deg,var(--verde-savia),var(--durazno));
+        box-shadow:0 0 0 7px rgba(255,207,174,.18);
+      }
+    
+      .sp-title{
+        margin:0 0 12px;
+        font-size:clamp(30px, 3.2vw, 44px);
+        line-height:1.06;
+        color:var(--negro);
+        font-weight:900;
+      }
+      .sp-title .accent{ color:var(--verde-savia); }
+    
+      .sp-sub{
+        margin:0 0 18px;
+        font-size:clamp(15px, 1.15vw, 18px);
+        line-height:1.7;
+        color:#5f6b67;
+        max-width:58ch;
+      }
+    
+      .sp-badges{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        margin:0 0 18px;
+      }
+      .sp-badge{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:8px 12px;
+        border-radius:999px;
+        background:rgba(255,255,255,.78);
+        border:1px solid rgba(0,0,0,.05);
+        box-shadow:0 12px 26px rgba(0,0,0,.06);
+        color:#4d5b56;
+        font-size:12.5px;
+        font-weight:700;
+        white-space:nowrap;
+      }
+      .sp-badge i{ color:var(--verde-bosque); }
+    
+      .sp-cta{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        align-items:center;
+        margin-top:8px;
+      }
+    
+      .sp-btn{
+        border:none;
+        cursor:pointer;
+        border-radius:999px;
+        padding:11px 16px;
+        font-weight:900;
+        font-size:13.5px;
+        display:inline-flex;
+        align-items:center;
+        gap:9px;
+        text-decoration:none;
+        transition:transform .18s var(--ease-out), box-shadow .18s var(--ease-out), filter .18s;
+        white-space:nowrap;
+      }
+      .sp-btn-primary{
+        color:#fff;
+        background:linear-gradient(135deg,var(--verde-savia),var(--verde-bosque));
+        box-shadow:0 16px 38px rgba(75,175,140,.30);
+      }
+      .sp-btn-primary:hover{
+        transform:translateY(-1px);
+        box-shadow:0 22px 52px rgba(47,107,87,.36);
+        filter:saturate(1.03);
+      }
+    
+      .sp-btn-outline{
+        color:var(--verde-bosque);
+        background:rgba(255,255,255,.72);
+        border:1px solid rgba(47,107,87,.20);
+        box-shadow:0 14px 32px rgba(0,0,0,.06);
+      }
+      .sp-btn-outline:hover{
+        transform:translateY(-1px);
+        filter:saturate(1.03);
+      }
+    
+      .sp-note{
+        margin-top:12px;
+        display:flex;
+        gap:10px;
+        align-items:flex-start;
+        font-size:12.5px;
+        color:#6b7a74;
+        max-width:62ch;
+      }
+      .sp-note .mini{
+        width:10px;height:10px;border-radius:999px;
+        background:var(--durazno);
+        margin-top:4px;
+        box-shadow:0 0 0 7px rgba(255,207,174,.14);
+        animation: spPulse 2.2s ease-in-out infinite;
+        flex:0 0 auto;
+      }
+      @keyframes spPulse{
+        0%,100%{ transform:scale(1); box-shadow:0 0 0 7px rgba(255,207,174,.14); }
+        50%{ transform:scale(1.06); box-shadow:0 0 0 12px rgba(255,207,174,.08); }
+      }
+    
+      /* Lado imagen */
+      .sp-media{
+        position:relative;
+        width:100%;
+        max-width:600px;     /* ✅ más grande */
+        justify-self:center; /* ✅ más al medio (en su columna) */
+      }
+    
+      .sp-frame{
+        position:relative;
+        border-radius:var(--radius-xl);
+        padding:6px;
+        background:linear-gradient(135deg, rgba(167,227,207,.95), rgba(255,207,174,.92));
+        box-shadow:0 26px 70px rgba(0,0,0,.12);
+        overflow:hidden;
+        border:1px solid rgba(0,0,0,.06);
+      }
+    
+      .sp-frame::before{
+        content:"";
+        position:absolute;
+        inset:-40%;
+        background:
+          radial-gradient(circle at 25% 25%, rgba(255,255,255,.55), transparent 45%),
+          radial-gradient(circle at 85% 75%, rgba(255,207,174,.40), transparent 55%),
+          radial-gradient(circle at 35% 95%, rgba(75,175,140,.20), transparent 58%);
+        opacity:.7;
+        pointer-events:none;
+        animation:saviaPortadaShift 12s var(--ease-out) infinite alternate;
+      }
+    
+      .sp-badge-top{
+        position:absolute;
+        top:14px; right:14px;
+        z-index:3;
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:7px 11px;
+        border-radius:999px;
+        background:rgba(255,255,255,.90);
+        border:1px solid rgba(0,0,0,.06);
+        box-shadow:0 14px 34px rgba(0,0,0,.10);
+        color:var(--verde-bosque);
+        font-size:11px;
+        font-weight:900;
+        letter-spacing:.12em;
+        text-transform:uppercase;
+        white-space:nowrap;
+      }
+    
+      .sp-imgwrap{
+        position:relative;
+        z-index:1;
+        border-radius:calc(var(--radius-xl) - 10px);
+        background:#FDFDFD;
+        border:1px solid rgba(0,0,0,.08);
+        overflow:hidden;
+    
+        height:var();        /* ✅ controla el tamaño */
+        padding:px;                /* ✅ menos borde blanco = se ve más grande */
+        display:flex;
+        align-items:center;         /* ✅ centrada vertical */
+        justify-content:center;     /* ✅ centrada horizontal */
+      }
+    
+      .sp-img{
+        width:100%;
+        height:100%;
+        object-fit:contain;
+        display:block;
+        transform:translateY(var(--img-shift));
+      }
+    
+      .sp-media-foot{
+        margin-top:10px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:10px;
+        flex-wrap:wrap;
+        color:#6b7a74;
+        font-size:12px;
+      }
+    
+      .sp-link{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:8px 10px;
+        border-radius:999px;
+        background:rgba(255,255,255,.72);
+        border:1px solid rgba(47,107,87,.18);
+        color:var(--verde-bosque);
+        text-decoration:none;
+        font-weight:900;
+        transition:transform .18s var(--ease-out);
+      }
+      .sp-link:hover{ transform:translateY(-1px); }
+    
+      /* Responsive */
+      @media (max-width:900px){
+        .sp-grid{ grid-template-columns:1fr; }
+        .sp-media{ max-width:640px; justify-self:center; }
+        .savia-portada{ --img-h: clamp(320px, 78vw, 520px); }
+      }
+    
+      @media (prefers-reduced-motion: reduce){
+        .savia-portada::before,
+        .sp-frame::before,
+        .sp-note .mini{ animation:none !important; }
+        .sp-btn, .sp-link{ transition:none !important; }
+      }
+    
+   
+
+  
+
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;font-size:90%;}
     body{
@@ -42,6 +350,11 @@
       background:var(--arena);
       line-height:1.6;
       overflow-x:hidden;
+
+      /* Mejor nitidez tipográfica */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
     }
 
     img{max-width:100%;display:block}
@@ -102,8 +415,9 @@
       position:sticky;
       top:0;
       z-index:40;
-      background:rgba(245,241,234,.90);
-      backdrop-filter:blur(14px);
+
+      /* SIN blur para que no se vea borroso */
+      background:rgba(245,241,234,.96);
       border-bottom:1px solid rgba(0,0,0,.04);
     }
     .nav{
@@ -294,7 +608,6 @@
       box-shadow:0 24px 60px rgba(0,0,0,.10);
       position:relative;
       overflow:hidden;
-      transform:translateZ(0);
     }
     .hero-card::before{
       content:"";
@@ -445,7 +758,6 @@
       box-shadow:0 18px 42px rgba(0,0,0,.08);
       position:relative;
       overflow:hidden;
-      transform:translateZ(0);
       transition: transform .22s var(--ease-out), box-shadow .22s var(--ease-out);
     }
     .benefit-card::after{
@@ -829,42 +1141,6 @@
     .list-check li{display:flex;gap:.55rem;align-items:flex-start;}
     .list-check span.icon{margin-top:.15rem;font-size:.9rem;color:var(--verde-savia);font-weight:900;}
 
-    /* CARTEL FIJO EXTRA DE PUBLICIDAD */
-    .promo-strip-secondary{
-      margin:0 auto 2.4rem;
-      background:linear-gradient(135deg,var(--verde-savia),var(--verde-bosque));
-      border-radius:22px;
-      padding:1.2rem 1.6rem;
-      display:flex;
-      align-items:center;
-      gap:1.2rem;
-      box-shadow:0 22px 60px rgba(0,0,0,.18);
-      font-size:.9rem;
-      color:#fff;
-      position:relative;
-      overflow:hidden;
-    }
-    .promo-strip-secondary::after{
-      content:"";
-      position:absolute;
-      inset:-40%;
-      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-      animation: softShift 12s var(--ease-out) infinite alternate;
-    }
-    .promo-strip-secondary > *{position:relative; z-index:1;}
-    .promo-strip-secondary-logo{
-      width:56px;height:56px;border-radius:50%;
-      background:rgba(255,255,255,.16);
-      display:flex;align-items:center;justify-content:center;
-      flex-shrink:0;
-      border:1px solid rgba(255,255,255,.18);
-    }
-    .promo-strip-secondary-logo img{width:38px;height:auto;}
-    .promo-strip-secondary-text strong{color:#fff;display:block;margin-bottom:.25rem;font-weight:800;}
-    .promo-strip-secondary-text p{margin:0;color:rgba(255,255,255,.92);font-size:.86rem;}
-
     /* BLOQUE CREADORAS */
     .creators-grid{
       margin-top:2.4rem;
@@ -1036,21 +1312,18 @@
     .footer-links a{color:#5f6b67;}
     .footer-links a:hover{color:var(--verde-bosque);}
 
-    /* ANIMACIONES (scroll) - más pro: blur + slide */
+    /* ANIMACIONES (scroll) - SIN blur + SIN scale para que NO se vea borroso */
     .fade-in{
       opacity:0;
-      transform:translateY(26px) scale(.985);
-      filter: blur(6px);
+      transform:translateY(26px);
       transition:
         opacity .75s var(--ease-out),
-        transform .75s var(--ease-out),
-        filter .75s var(--ease-out);
-      will-change: opacity, transform, filter;
+        transform .75s var(--ease-out);
+      will-change: opacity, transform;
     }
     .fade-in.visible{
       opacity:1;
-      transform:translateY(0) scale(1);
-      filter: blur(0);
+      transform:translateY(0);
     }
 
     /* WHATSAPP FLOAT */
@@ -1185,14 +1458,13 @@
       *{animation:none !important; transition:none !important;}
       html{scroll-behavior:auto;}
     }
+
     .pack-top-ribbon{
-  top: 14px;           /* en vez de -14px */
-}
-
-.pack-card.pack-recommended{
-  padding-top: 2.1rem; /* para que no tape el contenido */
-}
-
+      top: 14px;           /* en vez de -14px */
+    }
+    .pack-card.pack-recommended{
+      padding-top: 2.1rem; /* para que no tape el contenido */
+    }
   </style>
 </head>
 
@@ -1236,80 +1508,76 @@
     <!-- =========================================================
       1) INICIO
     ========================================================== -->
-    <section class="hero" id="inicio">
-      <div class="container hero-grid">
-        <div class="hero-left fade-in" data-delay="0">
-          <div class="eyebrow">Software & programación para emprendedores reales</div>
-
-          <h1 class="hero-title">
-            Savia
-            <span class="accent">organiza tu tiempo y vos hacés crecer tu negocio.</span>
-          </h1>
-
-          <p class="hero-sub">
-            Pasá de anotar en cuadernos y WhatsApp desordenado a tener turnos, agenda,
-            clientas y tu web en un solo sistema.
-          </p>
-
-          <div class="hero-badges">
-            <div class="badge"><span class="badge-dot"></span>Turnero online 24/7 + recordatorios automáticos</div>
-            <div class="badge"><span class="badge-dot"></span>Agenda diaria clara: huecos libres y caja estimada</div>
-            <div class="badge"><span class="badge-dot"></span>Web o landing para que tus clientas reserven en 2 clics</div>
-            <div class="badge"><span class="badge-dot"></span>Mini CRM: historial, notas, preferencias y reportes simples</div>
+ 
+    <section class="savia-portada" id="inicio">
+      <div class="sp-container">
+        <div class="sp-grid">
+    
+          <!-- INFO / TEXTO -->
+          <div class="sp-info">
+            <div class="sp-eyebrow">
+              
+              SOFTWARE & PROGRAMACIÓN PARA EMPRENDEDORAS
+            </div>
+    
+            <h2 class="sp-title">
+              Tu agenda, tus turnos y tu web,
+              <span class="accent">en un solo lugar.</span>
+            </h2>
+    
+            <p class="sp-sub">
+              Savia te ayuda a dejar atrás el WhatsApp desordenado y la improvisación:
+              ordenás tu día, reducís ausentismo y tu negocio se ve más profesional.
+            </p>
+    
+            <div class="sp-badges">
+              <div class="sp-badge"><i class="fa-solid fa-calendar-check"></i> Turnero online 24/7</div>
+              <div class="sp-badge"><i class="fa-solid fa-bell"></i> Recordatorios automáticos</div>
+              <div class="sp-badge"><i class="fa-solid fa-chart-line"></i> Resumen mensual claro</div>
+              <div class="sp-badge"><i class="fa-solid fa-globe"></i> Web/landing con tu marca</div>
+            </div>
+    
+            <div class="sp-cta">
+              <a class="sp-btn sp-btn-primary" href="#packs">
+                <i class="fa-solid fa-sparkles"></i>
+                Ver packs
+              </a>
+    
+              <a class="sp-btn sp-btn-outline"
+                 target="_blank"
+                 href="https://wa.me/5492613387305?text=Hola%20Savia.%20Quiero%20info%20para%20automatizar%20mi%20agenda%20y%20mis%20turnos.%20%C2%BFMe%20orientan%20con%20los%20packs%3F">
+                <i class="fa-brands fa-whatsapp"></i>
+                Hablar por WhatsApp
+              </a>
+            </div>
+    
+            <div class="sp-note">
+              <span class="mini"></span>
+              <span>Ideal para estéticas, peluquerías, bienestar y consultorios. Configuración acompañada, sin complicarte.</span>
+            </div>
           </div>
-
-          <div class="hero-cta">
-            <a href="#demo" class="btn btn-primary">
-              <i class="fa-solid fa-sparkles"></i>
-              Quiero automatizar mi agenda con Savia
-            </a>
-            <a href="https://wa.me/5492613387305?text=Hola%20Savia%2C%20quiero%20info%20para%20mi%20negocio."
-               target="_blank" class="btn btn-outline">
-              <i class="fa-brands fa-whatsapp"></i>
-              Hablar ahora por WhatsApp
-            </a>
+    
+          <!-- IMAGEN -->
+          <div class="sp-media">
+            <div class="sp-frame">
+              <div class="sp-badge-top">
+                <i class="fa-solid fa-image"></i>
+                SIMPLIFICÁ TU DÍA
+              </div>
+    
+              <div class="sp-imgwrap">
+                <img src="portada2.png" alt="Portada Savia" class="sp-img">
+              </div>
+            </div>
+    
+           
           </div>
-
-          <div class="hero-note">
-            <span class="hero-note-dot"></span>
-            <span>Ideal para estéticas, peluquerías, spas, consultorios y emprendedoras que quieren dejar de improvisar y aprovechar cada turno.</span>
-          </div>
+    
         </div>
-
-        <aside class="hero-card fade-in" data-delay="80">
-          <div class="hero-card-header">
-            <img src="img/dark_logo_transparent_background.png" alt="Isotipo Savia" class="hero-logo-mark">
-            <span class="hero-pill">Panel diario · Aprovechá cada turno</span>
-          </div>
-
-          <h2>Tu día completo en un solo vistazo</h2>
-          <p>
-            Mirá tus turnos confirmados, huecos libres, ingresos estimados y
-            clientas nuevas sin revisar mil chats. Todo conectado con tu turnero,
-            tu web y tus automatizaciones Savia.
-          </p>
-
-          <ul class="hero-card-list">
-            <li>Turnos online 24/7 (sin depender de tu horario)</li>
-            <li>Recordatorios automáticos para reducir ausentismo</li>
-            <li>Historial de clientas, notas y preferencias</li>
-            <li>Alertas de no-shows y reprogramaciones rápidas</li>
-            <li>Resumen diario y mensual de ingresos</li>
-            <li>Lista de espera y próximos turnos en la misma pantalla</li>
-          </ul>
-
-          <a href="https://namilo1315.github.io/turnos/" target="_blank">
-            <button class="btn btn-primary" style="width:100%;margin-top:.35rem;">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              Ver cómo se vería mi agenda con Savia
-            </button>
-          </a>
-
-          <div class="hero-mini-label">Sin compromiso · Te acompañamos en la configuración paso a paso</div>
-        </aside>
       </div>
     </section>
-
+    <!-- =================== /PORTADA SAVIA =================== -->
+    
     <!-- =========================================================
       2) ¿QUÉ ES?
     ========================================================== -->
@@ -1320,8 +1588,9 @@
             <div class="section-eyebrow">Qué es Savia</div>
             <h2 class="section-title">Gestión pensada para tu día a día</h2>
             <p class="section-sub">
-              Savia es un software de gestión para emprendedoras reales: estéticas, peluquerías y profesionales del bienestar que necesitan orden, claridad y tiempo, y se complementa con servicios de programación a medida: desde turneros hasta páginas web para profesionales y empresas, sistemas y otros servicios.
-            </p>
+             
+              SAVIA es un software de gestión para emprendedoras y profesionales que necesitan organizar sus turnos, automatizar mensajes y mostrar una imagen profesional. 
+
           </div>
 
           <div class="highlight-card">
@@ -1507,7 +1776,7 @@
             </ul>
 
             <div class="pack-price">
-              <strong>Fee de ingreso: $50</strong>
+              <strong>Fee de ingreso: $15</strong>
               <p>Incluye acompañamiento completo en la configuración inicial.<br><b>Mensual:</b> $15</p>
             </div>
 
@@ -1545,8 +1814,8 @@
             </ul>
 
             <div class="pack-price">
-              <strong>Fee de ingreso: $150</strong>
-              <p>Web lista para compartir + link de reservas.<br><b>Mensual:</b> $40</p>
+              <strong>Fee de ingreso: $25</strong>
+              <p>Web lista para compartir + link de reservas.<br><b>Mensual:</b> $20</p>
             </div>
 
             <div class="pack-actions">
@@ -1692,7 +1961,7 @@
             </p>
             <div style="flex:1 1 auto;border-radius:20px;overflow:hidden;border:1px solid #ffd4b3;background:#fffaf6;">
               <iframe src="https://saviaapp.github.io/site/profesional"
-                      style="width:100%;height:460px;border:0;display:block;transform:translateY(-10px);"></iframe>
+                      style="width:100%;height:460px;border:0;display:block;"></iframe>
             </div>
             <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
               <p style="margin:0;font-size:11px;color:#90a4ae;">Demo del panel profesional donde administrás tu negocio.</p>
@@ -2076,7 +2345,7 @@
     </div>
   </div>
 
-  <!-- SCRIPT: Modales (suave) -->
+  <!-- SCRIPT: Modales (SIN scale para que NO se vea borroso) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const whatsappUrl = "https://wa.me/5492613387305?text=" + encodeURIComponent(
@@ -2095,12 +2364,12 @@
 
       const modales = document.querySelectorAll(".promo-modal");
       modales.forEach(function (modal) {
-        modal.style.transform = "translateY(10px) scale(0.96)";
+        modal.style.transform = "translateY(14px)";
         modal.style.opacity = "0";
         modal.style.transition = "transform 0.55s cubic-bezier(.2,.85,.2,1), opacity 0.55s cubic-bezier(.2,.85,.2,1)";
 
         setTimeout(function () {
-          modal.style.transform = "translateY(0) scale(1)";
+          modal.style.transform = "translateY(0)";
           modal.style.opacity = "1";
         }, 120);
       });
@@ -2276,6 +2545,708 @@
       window.open(`https://wa.me/5492613387305?text=${encodeURIComponent(text)}`, '_blank');
     });
   </script>
+  <!-- ========= FAB: Instagram + BOT FAQ (Asistente Virtual) ========= -->
+<!-- Pegalo ANTES de </body> -->
 
+<style>
+  /* Botones flotantes extra (arriba del WhatsApp) */
+  .fab-float{
+    position:fixed;
+    right:1.4rem;
+    width:54px;height:54px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    z-index:85;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 18px 46px rgba(0,0,0,.30);
+    transition:transform .18s cubic-bezier(.2,.85,.2,1), box-shadow .18s cubic-bezier(.2,.85,.2,1), filter .18s;
+    overflow:hidden;
+    text-decoration:none;
+  }
+  .fab-float i{font-size:21px;color:#fff;}
+  .fab-float:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 26px 60px rgba(0,0,0,.40);filter:saturate(1.05);}
+
+  /* Robot FAQ */
+  .fab-faq{
+    bottom:calc(1.4rem + 74px); /* arriba del WhatsApp */
+    background:linear-gradient(135deg,var(--verde-savia),var(--verde-bosque));
+  }
+  .fab-faq::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent);
+    transform:translateX(-120%);
+    animation: fabSweep 4.6s cubic-bezier(.2,.85,.2,1) infinite;
+    pointer-events:none;
+  }
+
+  /* Instagram */
+  .fab-ig{
+    bottom:calc(1.4rem + 148px);
+    background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);
+  }
+  .fab-ig::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+    transform:translateX(-120%);
+    animation: fabSweep 5.4s cubic-bezier(.2,.85,.2,1) infinite;
+    pointer-events:none;
+  }
+
+  @keyframes fabSweep{
+    0%{ transform:translateX(-120%); opacity:0; }
+    20%{ opacity:1; }
+    70%{ opacity:1; }
+    100%{ transform:translateX(120%); opacity:0; }
+  }
+
+  @media (max-width:768px){
+    .fab-float{ right:1.1rem; width:50px; height:50px; }
+    .fab-float i{ font-size:20px; }
+    .fab-faq{ bottom:calc(1.1rem + 66px); }
+    .fab-ig{  bottom:calc(1.1rem + 132px); }
+  }
+
+  /* Modal BOT */
+  .savia-bot-backdrop{
+    position:fixed; inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0; pointer-events:none;
+    transition:opacity .2s cubic-bezier(.2,.85,.2,1);
+    z-index:95;
+    display:flex; align-items:center; justify-content:center;
+    padding:14px;
+  }
+  .savia-bot-backdrop.open{ opacity:1; pointer-events:auto; }
+
+  .savia-bot{
+    width:min(420px, 92vw);
+    max-width:92vw;
+    max-height:86vh;
+    background:#fff;
+    border-radius:22px;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 24px 70px rgba(0,0,0,.45);
+    overflow:hidden;
+    transform:translateY(12px);
+    opacity:0;
+    transition:transform .28s cubic-bezier(.2,.85,.2,1), opacity .28s cubic-bezier(.2,.85,.2,1);
+    display:flex;
+    flex-direction:column;
+  }
+  .savia-bot-backdrop.open .savia-bot{ transform:translateY(0); opacity:1; }
+
+  .savia-bot-top{
+    padding:12px 12px 10px;
+    background:
+      radial-gradient(circle at 0% 0%, rgba(167,227,207,.45), transparent 55%),
+      radial-gradient(circle at 100% 90%, rgba(255,207,174,.45), transparent 60%),
+      #ffffff;
+    border-bottom:1px solid rgba(0,0,0,.06);
+    position:relative;
+  }
+  .savia-bot-close{
+    position:absolute; top:10px; right:10px;
+    width:34px;height:34px;
+    border-radius:14px;
+    border:1px solid rgba(0,0,0,.08);
+    background:rgba(255,255,255,.90);
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .18s cubic-bezier(.2,.85,.2,1);
+  }
+  .savia-bot-close:hover{ transform:scale(1.03); }
+  .savia-bot-close i{ color:#64748b; font-size:16px; }
+
+  .savia-bot-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 10px;border-radius:999px;
+    background:rgba(75,175,140,.12);
+    color:var(--verde-bosque);
+    border:1px solid rgba(47,107,87,.14);
+    font-size:11px;font-weight:900;
+    letter-spacing:.12em;text-transform:uppercase;
+  }
+  .savia-bot-badge i{ color:var(--verde-bosque); }
+
+  .savia-bot-top h3{
+    margin:8px 0 2px;
+    font-size:15px;font-weight:900;color:#163237;
+  }
+  .savia-bot-top p{
+    margin:0;
+    font-size:12.5px;color:#5f6b67;line-height:1.5;
+  }
+
+  .savia-bot-body{
+    padding:10px 10px 12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    min-height:0;
+  }
+
+  /* Chat */
+  .savia-chat{
+    height:220px;
+    max-height:32vh;
+    border-radius:18px;
+    border:1px solid rgba(0,0,0,.08);
+    background:rgba(245,241,234,.55);
+    padding:10px;
+    overflow:auto;
+  }
+  @media (max-width:768px){
+    .savia-chat{ height:200px; max-height:34vh; }
+  }
+
+  .savia-msg{ display:flex; margin:8px 0; gap:8px; }
+  .savia-msg.user{ justify-content:flex-end; }
+  .savia-msg.bot{ justify-content:flex-start; }
+
+  .savia-bubble{
+    max-width:86%;
+    padding:10px 12px;
+    border-radius:16px;
+    font-size:13px;
+    line-height:1.5;
+    border:1px solid rgba(0,0,0,.08);
+    background:#fff;
+    color:#18322E;
+    box-shadow:0 10px 24px rgba(0,0,0,.06);
+    white-space:pre-line;
+
+    /* FIX overflow (cel) */
+    overflow-wrap:anywhere;
+    word-break:break-word;
+    hyphens:auto;
+  }
+  .savia-msg.user .savia-bubble{
+    background:linear-gradient(135deg, rgba(75,175,140,.18), rgba(167,227,207,.20));
+    border-color:rgba(47,107,87,.18);
+  }
+  .savia-msg.bot .savia-bubble{ background:#ffffff; }
+
+  .savia-label{
+    display:block;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#64748b;
+    margin-bottom:6px;
+  }
+
+  /* Quick replies */
+  .savia-quick{
+    display:flex; flex-wrap:wrap;
+    gap:8px;
+    margin-top:2px;
+  }
+  .savia-chip{
+    border:1px solid rgba(47,107,87,.18);
+    background:rgba(255,255,255,.80);
+    color:var(--verde-bosque);
+    border-radius:999px;
+    padding:8px 10px;
+    font-size:12px;
+    font-weight:900;
+    cursor:pointer;
+    transition:transform .16s cubic-bezier(.2,.85,.2,1), background .16s;
+    font-family:inherit;
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+  .savia-chip:hover{ transform:translateY(-1px); background:#fff; }
+
+  /* Input */
+  .savia-inputbar{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  .savia-input{
+    flex:1;
+    border-radius:999px;
+    border:1px solid rgba(0,0,0,.10);
+    padding:10px 12px;
+    font-size:13px;
+    font-family:inherit;
+    outline:none;
+    background:rgba(245,241,234,.60);
+    min-width:0;
+  }
+  .savia-input:focus{
+    border-color:rgba(75,175,140,.95);
+    box-shadow:0 0 0 3px rgba(75,175,140,.14);
+    background:#fff;
+  }
+  .savia-send{
+    border:none;
+    border-radius:999px;
+    padding:10px 12px;
+    font-weight:900;
+    cursor:pointer;
+    background:linear-gradient(135deg,var(--verde-savia),var(--verde-bosque));
+    color:#fff;
+    box-shadow:0 14px 34px rgba(75,175,140,.30);
+    font-family:inherit;
+    white-space:nowrap;
+  }
+  .savia-send i{ margin-left:6px; }
+
+  .savia-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .savia-linkbtn{
+    font-size:12px;
+    font-weight:900;
+    color:var(--verde-bosque);
+    background:rgba(167,227,207,.18);
+    border:1px solid rgba(47,107,87,.16);
+    padding:8px 10px;
+    border-radius:999px;
+    cursor:pointer;
+    font-family:inherit;
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+  .savia-wa{
+    font-size:12px;
+    font-weight:900;
+    color:#fff;
+    background:linear-gradient(135deg,var(--verde-savia),var(--verde-bosque));
+    border:1px solid rgba(255,255,255,.14);
+    padding:8px 10px;
+    border-radius:999px;
+    cursor:pointer;
+    font-family:inherit;
+    box-shadow:0 14px 34px rgba(75,175,140,.22);
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+</style>
+
+<!-- Botón Robot BOT -->
+<a href="#" class="fab-float fab-faq" id="saviaBotFab" aria-label="Asistente virtual">
+  <i class="fa-solid fa-robot"></i>
+</a>
+
+<!-- Botón Instagram -->
+<a href="https://www.instagram.com/savia_app/" target="_blank" rel="noopener"
+   class="fab-float fab-ig" aria-label="Instagram Savia">
+  <i class="fa-brands fa-instagram"></i>
+</a>
+
+<!-- Modal BOT -->
+<div class="savia-bot-backdrop" id="saviaBotBackdrop" aria-hidden="true">
+  <div class="savia-bot" role="dialog" aria-modal="true" aria-labelledby="saviaBotTitle">
+    <div class="savia-bot-top">
+      <button class="savia-bot-close" type="button" id="saviaBotClose" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="savia-bot-badge">
+        <i class="fa-solid fa-robot"></i>
+        ASISTENTE VIRTUAL
+      </div>
+
+      <h3 id="saviaBotTitle">Preguntas frecuentes · Savia</h3>
+      <p>Estoy para ayudarte. Contame qué te gustaría saber.</p>
+    </div>
+
+    <div class="savia-bot-body">
+      <div class="savia-chat" id="saviaChat"></div>
+
+      <div class="savia-quick">
+        <button class="savia-chip" type="button" data-q="que-es">¿Qué es Savia?</button>
+        <button class="savia-chip" type="button" data-q="precios">Precios</button>
+        <button class="savia-chip" type="button" data-q="pack1">Pack 1</button>
+        <button class="savia-chip" type="button" data-q="pack2">Pack 2</button>
+        <button class="savia-chip" type="button" data-q="pack3">Pack 3</button>
+        <button class="savia-chip" type="button" data-q="recordatorios">Recordatorios</button>
+        <button class="savia-chip" type="button" data-q="turnos">Cómo reservan</button>
+        <button class="savia-chip" type="button" data-q="demo">Ver demo</button>
+      </div>
+
+      <div class="savia-inputbar">
+        <input class="savia-input" id="saviaBotInput" type="text"
+               placeholder='Ej: "hola", "precios", "turnos", "web", "seña", "mercado pago"...' />
+        <button class="savia-send" id="saviaBotSend" type="button">
+          Enviar <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <div class="savia-actions">
+        <button class="savia-linkbtn" type="button" data-go="#packs">Ir a Packs</button>
+        <button class="savia-linkbtn" type="button" data-go="#savia-demo-dos-paneles">Ir a Demo</button>
+        <button class="savia-linkbtn" type="button" data-go="#demo">Ir a Contacto</button>
+        <button class="savia-wa" type="button" id="saviaBotWhatsApp">Hablar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const fab = document.getElementById("saviaBotFab");
+    const backdrop = document.getElementById("saviaBotBackdrop");
+    const closeBtn = document.getElementById("saviaBotClose");
+    const chat = document.getElementById("saviaChat");
+    const input = document.getElementById("saviaBotInput");
+    const sendBtn = document.getElementById("saviaBotSend");
+    const waBtn = document.getElementById("saviaBotWhatsApp");
+
+    const WA_BASE = "https://wa.me/5492613387305?text=";
+
+    const BOT_NAME = "Lumi";
+    const BOT_LABEL = "Asistente Virtual";
+
+    const KB = {
+      "que-es": {
+        q: "¿Qué es Savia?",
+        a:
+`Savia es un software de gestión para emprendedoras (estéticas, peluquerías y bienestar).
+Te ayuda a ordenar turnos, agenda, clientas y servicios en un solo sistema.
+
+Incluye:
+- Turnero online 24/7 para tus clientas (Booking)
+- Panel profesional para administrar agenda y datos (Admin)
+- Organización de servicios y precios
+- Plantillas de mensajes/recordatorios
+- Reportes simples para ver tu mes con claridad`
+      },
+      "precios": {
+        q: "Precios",
+        a:
+`Estos son los precios base:
+
+PACK 1
+- Fee de ingreso: $15
+- Mensual: $15
+
+PACK 2
+- Fee de ingreso: $25
+- Mensual: $20
+
+PACK 3
+- Diagnóstico inicial: $20
+- Luego: presupuesto según desarrollo a medida`
+      },
+      "pack1": {
+        q: "Pack 1",
+        a:
+`PACK 1 (Agenda Digital + Turnero)
+Ideal para empezar a digitalizar tu negocio.
+
+Incluye:
+- SAVIA Admin (panel profesional)
+- Agenda + disponibilidad real
+- Registro de clientas
+- Servicios organizados
+- Plantillas de mensajes por WhatsApp
+- SAVIA Booking (turnero público)
+- Diseño con tu logo y colores`
+      },
+      "pack2": {
+        q: "Pack 2",
+        a:
+`PACK 2 (Pack 1 + Web profesional)
+Presencia completa + reservas integradas.
+
+Incluye:
+- Todo lo del Pack 1
+- Web del negocio (presentación)
+- Sección de servicios + galería
+- Formulario de contacto
+- Booking integrado a la web`
+      },
+      "pack3": {
+        q: "Pack 3",
+        a:
+`PACK 3 (Desarrollo a medida)
+Para negocios con necesidades específicas.
+
+Incluye:
+- Diagnóstico y objetivos
+- Mapa de procesos
+- Propuesta de módulos a medida
+- Implementación guiada
+- Roadmap escalable`
+      },
+      "recordatorios": {
+        q: "Recordatorios",
+        a:
+`Sí, Savia trabaja con recordatorios/plantillas para reducir ausentismo.
+
+Lo típico:
+- Confirmación al reservar
+- Recordatorio previo al turno
+- Mensaje para reprogramar/cancelar
+
+Se configura con tu tono y tu forma de atender.`
+      },
+      "turnos": {
+        q: "Cómo reservan",
+        a:
+`Tus clientas reservan desde SAVIA Booking:
+1) Eligen servicio
+2) Seleccionan día y horario disponible
+3) Completan datos y confirman
+
+Vos lo ves en SAVIA Admin con la agenda actualizada y el estado del turno.`
+      },
+      "demo": {
+        q: "Ver demo",
+        a:
+`En la sección Demo podés ver:
+- Panel de cliente (lo que ve tu clienta)
+- Panel profesional (tu agenda y configuración)
+
+Si querés, te digo qué pack encaja mejor según tu rubro.`
+      }
+    };
+
+    function normalize(s){
+      return (s || "")
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+
+    function addMsg(text, who, withLabel){
+      const row = document.createElement("div");
+      row.className = `savia-msg ${who}`;
+
+      const bubble = document.createElement("div");
+      bubble.className = "savia-bubble";
+
+      if(withLabel){
+        const label = document.createElement("span");
+        label.className = "savia-label";
+        label.textContent = (who === "bot") ? `${BOT_LABEL} · ${BOT_NAME}` : "Vos";
+        bubble.appendChild(label);
+      }
+
+      const content = document.createElement("div");
+      content.textContent = text;
+      bubble.appendChild(content);
+
+      row.appendChild(bubble);
+      chat.appendChild(row);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function botSay(text, label=true){ addMsg(text, "bot", label); }
+    function userSay(text, label=false){ addMsg(text, "user", label); }
+
+    function openBot(){
+      backdrop.classList.add("open");
+      backdrop.setAttribute("aria-hidden","false");
+
+      if(!chat.dataset.booted){
+        chat.dataset.booted = "1";
+        botSay(
+`Hola! Soy ${BOT_NAME}, tu asistente virtual de Savia.
+Estamos para ayudarte. Contanos qué te gustaría saber.
+`,
+          true
+        );
+      }
+      setTimeout(() => input?.focus(), 120);
+    }
+    function closeBot(){
+      backdrop.classList.remove("open");
+      backdrop.setAttribute("aria-hidden","true");
+    }
+
+    function withFollowUp(answer){
+      return `${answer}\n\n¿Te gustaría saber algo más?`;
+    }
+
+    function answerByKey(key){
+      const item = KB[key];
+      if(!item) return;
+      userSay(item.q);
+      setTimeout(() => botSay(withFollowUp(item.a), true), 120);
+    }
+
+    function fallbackAnswer(){
+      return (
+`Puedo orientarte, pero para darte una respuesta exacta me falta un dato.
+
+Decime:
+- tu rubro
+- si atendés sola o con equipo
+- cuántos servicios ofrecés
+
+Si preferís resolverlo rápido, lo mejor sería que nos hables por WhatsApp con el botón de abajo.
+Muchas gracias por tu tiempo!`
+      );
+    }
+
+    function smartAnswer(q){
+      const t = normalize(q);
+
+      // Saludos
+      if(
+        t === "hola" || t === "hola!" || t === "holaa" ||
+        t === "buenas" || t === "buenas!" ||
+        t === "buen dia" || t === "buen día" ||
+        t.startsWith("hola") || t.startsWith("buenas") || t.startsWith("buen dia")
+      ){
+        return `Hola 😊 Soy ${BOT_NAME}. Contame qué te gustaría saber.`;
+      }
+
+      // Gracias / cierre
+      if(t.includes("gracias") || t === "genial" || t === "perfecto"){
+        return "De nada 😊 Muchas gracias por tu tiempo! Si necesitas algo más, estoy para ayudarte.";
+      }
+
+      // Intenciones / keywords
+      if(t.includes("precio") || t.includes("precios") || t.includes("mensual") || t.includes("fee") || t.includes("cuanto") || t.includes("cuánto")){
+        return withFollowUp(KB.precios.a);
+      }
+
+      if(t.includes("pack 1") || (t.includes("pack") && t.includes("1")) || t.includes("agenda") || t.includes("turnero")){
+        return withFollowUp(KB.pack1.a);
+      }
+
+      if(t.includes("pack 2") || (t.includes("pack") && t.includes("2")) || t.includes("web") || t.includes("landing") || t.includes("dominio")){
+        return withFollowUp(KB.pack2.a);
+      }
+
+      if(t.includes("pack 3") || (t.includes("pack") && t.includes("3")) || t.includes("a medida") || t.includes("sistema") || t.includes("modulo") || t.includes("módulo") || t.includes("integracion") || t.includes("integración")){
+        return withFollowUp(KB.pack3.a);
+      }
+
+      if(t.includes("record") || t.includes("ausent") || t.includes("confirm") || t.includes("whatsapp")){
+        return withFollowUp(KB.recordatorios.a);
+      }
+
+      if(t.includes("demo")){
+        return withFollowUp(KB.demo.a);
+      }
+
+      if(t.includes("reserv") || t.includes("turno") || t.includes("cancel") || t.includes("reprogram")){
+        return withFollowUp(KB.turnos.a);
+      }
+
+      // Seña / Mercado Pago (orientación)
+      if(t.includes("seña") || t.includes("sena") || t.includes("anticipo") || t.includes("mercado pago") || t === "mp" || t.includes("pago")){
+        return withFollowUp(
+`Sí, se puede trabajar con seña/anticipo (por ejemplo $5000) y avisos de no-show.
+
+Se define por negocio:
+- seña obligatoria para confirmar
+- seña opcional
+- política de cancelación (ej: si no avisa, pierde la seña)
+
+Si me decís tu idea exacta, te recomiendo la mejor forma de implementarlo.`
+        );
+      }
+
+      return fallbackAnswer();
+    }
+
+    function handleSend(){
+      const text = input.value.trim();
+      if(!text) return;
+      userSay(text);
+      input.value = "";
+      setTimeout(() => botSay(smartAnswer(text), true), 160);
+    }
+
+    // FAB / Modal
+    fab?.addEventListener("click", (e) => { e.preventDefault(); openBot(); });
+    closeBtn?.addEventListener("click", closeBot);
+    backdrop?.addEventListener("click", (e) => { if(e.target === backdrop) closeBot(); });
+    document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeBot(); });
+
+    // Quick replies
+    document.querySelectorAll(".savia-chip").forEach(btn => {
+      btn.addEventListener("click", () => answerByKey(btn.getAttribute("data-q")));
+    });
+
+    // Input send
+    sendBtn?.addEventListener("click", handleSend);
+    input?.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") handleSend();
+    });
+
+    // Ir a secciones (dentro de la misma web)
+    document.querySelectorAll(".savia-linkbtn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const go = btn.getAttribute("data-go");
+        if(go && go.startsWith("#")){
+          closeBot();
+          setTimeout(() => {
+            const el = document.querySelector(go);
+            if(el) el.scrollIntoView({ behavior:"smooth", block:"start" });
+          }, 60);
+        }
+      });
+    });
+
+    // WhatsApp (solo si hace falta)
+    waBtn?.addEventListener("click", () => {
+      const text = encodeURIComponent(
+        "Hola Savia. Vengo desde el asistente virtual de la web y necesito ayuda para elegir pack / configurar mi caso. ¿Me orientan?"
+      );
+      window.open(WA_BASE + text, "_blank");
+    });
+  })();
+</script>
+<style>
+  /* ====== AJUSTES: centrar botones del bot ====== */
+  .savia-quick{
+    justify-content:center !important;
+  }
+  .savia-actions{
+    justify-content:center !important;
+  }
+</style>
+
+<script>
+  /* ====== AJUSTE: al abrir el bot, mostrar el inicio (saludo) ======
+     Buscamos tu función openBot() y la "parcheamos" sin reescribir todo.
+     Si tu código ya existe, esto lo corrige igual.
+  */
+  (function(){
+    const backdrop = document.getElementById("saviaBotBackdrop");
+    const chat = document.getElementById("saviaChat");
+    const input = document.getElementById("saviaBotInput");
+    const fab = document.getElementById("saviaBotFab");
+
+    if(!backdrop || !chat || !fab) return;
+
+    // Cuando se abre (click en el robot), forzamos el scroll arriba para leer el saludo primero.
+    fab.addEventListener("click", () => {
+      // Espera a que el modal y el primer mensaje estén renderizados
+      setTimeout(() => {
+        chat.scrollTop = 0;                 // <-- esto es lo clave
+        input?.focus();
+      }, 60);
+    });
+
+    // También si se abre por cualquier otro motivo (por si lo llamás desde otro lado)
+    const observer = new MutationObserver(() => {
+      if(backdrop.classList.contains("open")){
+        setTimeout(() => { chat.scrollTop = 0; }, 60);
+      }
+    });
+    observer.observe(backdrop, { attributes:true, attributeFilter:["class"] });
+  })();
+</script>
+
+<!-- ===================== PORTADA SAVIA (SECCIÓN LISTA PARA PEGAR) ===================== -->
+<!-- Pegá TODO este bloque donde quieras (por ejemplo, abajo del todo del <body>).
+     Imagen: portada1.png (en la misma carpeta que el HTML). -->
+
+    
+    
 </body>
 </html>
