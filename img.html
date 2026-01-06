@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Savia · Imágenes públicas</title>
+  <style>
+    :root{
+      --verde:#4BAF8C;
+      --arena:#F5F1EA;
+      --texto:#1b2420;
+      --gris:#6b7280;
+      --borde:#e5e7eb;
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--texto);
+      background:linear-gradient(135deg,#fff,var(--arena));
+    }
+    header{
+      position:sticky; top:0;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--borde);
+      padding:14px 16px;
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+    }
+    .brand{display:flex; gap:10px; align-items:center}
+    .dot{width:12px;height:12px;border-radius:999px;background:var(--verde)}
+    h1{font-size:16px;margin:0}
+    .sub{font-size:12px;color:var(--gris);margin:2px 0 0}
+    main{max-width:1100px;margin:18px auto;padding:0 16px 26px}
+    .box{
+      background:white;
+      border:1px solid var(--borde);
+      border-radius:var(--radius);
+      padding:14px;
+      margin-bottom:14px;
+    }
+    .hint{font-size:13px;color:var(--gris);margin:0}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:14px;
+    }
+    figure{
+      margin:0;
+      background:white;
+      border:1px solid var(--borde);
+      border-radius:var(--radius);
+      overflow:hidden;
+    }
+    img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      display:block;
+      background:#fff;
+    }
+    figcaption{
+      padding:10px 12px;
+      border-top:1px solid var(--borde);
+    }
+    .name{font-weight:700;font-size:13px;margin:0 0 6px}
+    .url{
+      font-size:12px;
+      color:var(--gris);
+      word-break:break-all;
+      margin:0;
+    }
+    code{
+      background:#f3f4f6;
+      padding:2px 6px;
+      border-radius:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <h1>Imágenes públicas (Savia / clientas)</h1>
+        
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+
+    <section class="grid">
+      <!-- ✅ DUPLICÁ ESTE BLOQUE Y CAMBIÁ SOLO EL SRC Y EL NOMBRE -->
+      <figure>
+        <img src="img/logo1.jpeg" alt="Savia 01">
+        <figcaption>
+          <p class="name">Karen Sallustro</p>
+          <p class="url">URL: /img/logi1.jpeg</p>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="img/clienta-ana-01.jpg" alt="Clienta Ana 01">
+        <figcaption>
+          <p class="name">clienta-ana-01.jpg</p>
+          <p class="url">URL: /img/clienta-ana-01.jpg</p>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="img/clienta-lash-02.png" alt="Clienta Lash 02">
+        <figcaption>
+          <p class="name">clienta-lash-02.png</p>
+          <p class="url">URL: /img/clienta-lash-02.png</p>
+        </figcaption>
+      </figure>
+      <!-- ✅ FIN BLOQUE -->
+    </section>
+  </main>
+</body>
+</html>
